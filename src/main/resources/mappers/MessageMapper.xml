@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.fuelteam.example.user.dao.MessageMapper">
+    <resultMap id="BaseResultMap" type="cn.fuelteam.example.user.model.Message">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="context" jdbcType="VARCHAR" property="context" />
+        <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+    </resultMap>
+</mapper>
