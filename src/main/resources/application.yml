@@ -32,7 +32,7 @@ spring:
         mapper-package: mappers
         type-aliases-package: cn.fuelteam.example.user.model
         master:
-          url: jdbc:mysql://127.0.0.1:3306/userex?serverTimezone=UTC&useSSL=false
+          url: jdbc:mysql://127.0.0.1:3306/userex?serverTimezone=Asia/Shanghai&useSSL=false
   aop:
     auto: true
     proxy-target-class: true
