@@ -3,8 +3,8 @@ package cn.fuelteam.example.user.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ import cn.fuelteam.example.user.service.MessageService;
 @Service
 public class MessageServiceImpl implements MessageService {
 
-    private static final Logger logger = LogManager.getLogger();
+    private Logger logger = LoggerFactory.getLogger(MessageServiceImpl.class);
 
     @Autowired
     private MessageMapper messageMapper;

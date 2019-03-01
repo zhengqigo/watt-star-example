@@ -19,13 +19,11 @@ public class UserMessageServiceImpl implements UserMessageService {
     @Autowired
     private UserMapper userMapper;
 
-    @SuppressWarnings("unused")
     @Override
     @Transactional("userex")
     public void save(User user, Message message) throws Exception {
         try {
             userMapper.insertSelective(user);
-            int x = 1 / 0;
             messageMapper.insertSelective(message);
         } catch (Exception ex) {
             throw ex;

@@ -1,9 +1,9 @@
 package cn.fuelteam.example;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.fuelteam.watt.star.core.Proxy;
 import org.fuelteam.watt.star.core.Proxy.SwitchExecute;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
@@ -11,6 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.Ordered;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.alibaba.fastjson.JSON;
 
 import cn.fuelteam.example.user.model.Message;
 import cn.fuelteam.example.user.model.User;
@@ -21,7 +23,7 @@ import cn.fuelteam.example.user.service.UserService;
 @SpringBootApplication(scanBasePackages = { "cn.fuelteam.example.user" })
 public class ExampleApplication implements CommandLineRunner {
 
-    private static final Logger logger = LogManager.getLogger();
+    private Logger logger = LoggerFactory.getLogger(ExampleApplication.class);
 
     public static void main(String[] args) throws Exception {
         SpringApplication app = new SpringApplication(ExampleApplication.class);
@@ -61,7 +63,7 @@ public class ExampleApplication implements CommandLineRunner {
             Proxy.master(new SwitchExecute<Void>() {
                 @Override
                 public Void run() throws Throwable {
-                    logger.info(userService.findFirst());
+                    logger.info(JSON.toJSONString(userService.findFirst()));
                     userService.save(name, description);
                     return null;
                 }
@@ -69,14 +71,14 @@ public class ExampleApplication implements CommandLineRunner {
         }
 
         // 默认在主库查询
-        logger.info(userService.findFirst());
+        logger.info(JSON.toJSONString(userService.findFirst()));
         // 注解到从库查询
-        logger.info(userService.findFirstBySlave());
+        logger.info(JSON.toJSONString(userService.findFirstBySlave()));
         // 切换到从库查询
         Proxy.slave(new SwitchExecute<Void>() {
             @Override
             public Void run() throws Throwable {
-                logger.info(userService.findFirst());
+                logger.info(JSON.toJSONString(userService.findFirst()));
                 return null;
             }
         });
