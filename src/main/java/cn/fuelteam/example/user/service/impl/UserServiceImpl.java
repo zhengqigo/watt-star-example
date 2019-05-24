@@ -18,13 +18,13 @@ import cn.fuelteam.example.user.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserMapper userMapper;
 
     @Override
-    @Transactional("userex")
+    @Transactional("dsUser")
     public void delAll() {
         User user = new User();
         user.setState("0");
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional("userex")
+    @Transactional("user")
     @MasterSlaveRouter(slave = false) // 更新操作必须在主库执行
     public void save(String name, String description) {
         User record = new User();

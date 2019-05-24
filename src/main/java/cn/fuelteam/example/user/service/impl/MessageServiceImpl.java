@@ -19,13 +19,13 @@ import cn.fuelteam.example.user.service.MessageService;
 @Service
 public class MessageServiceImpl implements MessageService {
 
-    private Logger logger = LoggerFactory.getLogger(MessageServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(MessageServiceImpl.class);
 
     @Autowired
     private MessageMapper messageMapper;
 
     @Override
-    @Transactional("userex")
+    @Transactional("dsUser")
     public void save(String title, String context) {
         Message message = new Message();
         message.setContext(context);

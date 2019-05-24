@@ -23,7 +23,7 @@ import cn.fuelteam.example.user.service.UserService;
 @SpringBootApplication(scanBasePackages = { "cn.fuelteam.example.user" })
 public class ExampleApplication implements CommandLineRunner {
 
-    private Logger logger = LoggerFactory.getLogger(ExampleApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExampleApplication.class);
 
     public static void main(String[] args) throws Exception {
         SpringApplication app = new SpringApplication(ExampleApplication.class);

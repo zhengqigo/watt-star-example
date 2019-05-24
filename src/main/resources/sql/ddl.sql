@@ -1,6 +1,6 @@
-CREATE DATABASE `userex` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE `user` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
-USE `userex`;
+USE `user`;
 
 CREATE TABLE `user` (
   `id` VARCHAR(36) NOT NULL COMMENT '主键id',

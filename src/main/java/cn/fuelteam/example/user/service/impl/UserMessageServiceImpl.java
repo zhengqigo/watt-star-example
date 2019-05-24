@@ -20,7 +20,7 @@ public class UserMessageServiceImpl implements UserMessageService {
     private UserMapper userMapper;
 
     @Override
-    @Transactional("userex")
+    @Transactional("dsUser")
     public void save(User user, Message message) throws Exception {
         try {
             userMapper.insertSelective(user);
@@ -29,5 +29,4 @@ public class UserMessageServiceImpl implements UserMessageService {
             throw ex;
         }
     }
-
 }
