@@ -1,0 +1,28 @@
+spring:
+  druid:
+    stat:
+      enable: true
+      allow: ''
+      deny: ''
+      loginUsername: gj
+      loginPassword: 12345678
+      exclusions: '*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*'
+      resetEnable: false
+      filter-url-patterns: /*
+    default:
+      enable: true
+      initial-size: 5
+      max-active: 500
+      min-idle: 5
+      max-wait: 3000
+      filters: wall,stat
+      username: root
+      password: 12345678
+      default-auto-commit: true
+  mybatis:
+    configuration:
+      cache-enabled: true
+      local-cache-scope: session
+      lazy-loading-enabled: true
+      default-executor-type: simple
+      map-underscore-to-camel-case: true

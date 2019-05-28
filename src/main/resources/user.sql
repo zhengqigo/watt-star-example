@@ -1,0 +1,11 @@
+CREATE DATABASE  `user`;
+
+USE `user`;
+
+CREATE TABLE `user` (
+  `id` VARCHAR(36) NOT NULL COMMENT '主键id',
+  `name` VARCHAR(255) DEFAULT NULL COMMENT '用户名',
+  `state` TINYINT(2) DEFAULT NULL COMMENT '用户状态',
+  `description` VARCHAR(255) DEFAULT NULL COMMENT '用户描述',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8;

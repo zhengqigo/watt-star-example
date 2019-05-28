@@ -1,8 +1,8 @@
-package cn.fuelteam.example.user.service;
+package cn.fuelteam.watt.star.example.user.service;
 
 import java.util.List;
 
-import cn.fuelteam.example.user.model.User;
+import cn.fuelteam.watt.star.example.user.model.User;
 
 public interface UserService {
 
@@ -17,4 +17,6 @@ public interface UserService {
     User findFirst();
 
     User findFirstBySlave();
+
+    void saves(String... names);
 }

@@ -1,38 +1,16 @@
 logging:
   level:
     root: info
-    com.reger: debug
     tk.mybatis: info
     org.mybatis: info
-    org.fuelteam: debug
+    
 spring:
-  druid:
-    default:
-      enable: true
-      initial-size: 5
-      max-active: 20
-      min-idle: 10
-      max-wait: 3000
-      filters: wall,stat
-      validationQuery: select 0;
-      username: root
-      password: 12345678
-      default-auto-commit: true
-  mybatis:
-    configuration:
-      cache-enabled: true
-      local-cache-scope: session
-      lazy-loading-enabled: true
-      default-executor-type: simple
-    nodes:
-      dsUser:
-        order: before
-        primary: true
-        base-package: cn.fuelteam.example.user.dao
-        mapper-package: mappers
-        type-aliases-package: cn.fuelteam.example.user.model
-        master:
-          url: jdbc:mysql://127.0.0.1:3306/user?serverTimezone=Asia/Shanghai&useSSL=false
-  aop:
-    auto: true
-    proxy-target-class: true
+  profiles:
+    active:
+      - test
+    include:
+      - mybatis
+      - mybatis-base
+      - mybatis-message
+      - mybatis-user
+         

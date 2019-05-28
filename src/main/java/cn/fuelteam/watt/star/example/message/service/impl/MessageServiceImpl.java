@@ -1,4 +1,4 @@
-package cn.fuelteam.example.user.service.impl;
+package cn.fuelteam.watt.star.example.message.service.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import cn.fuelteam.example.user.dao.MessageMapper;
-import cn.fuelteam.example.user.model.Message;
-import cn.fuelteam.example.user.service.MessageService;
+import cn.fuelteam.watt.star.example.message.dao.MessageMapper;
+import cn.fuelteam.watt.star.example.message.model.Message;
+import cn.fuelteam.watt.star.example.message.service.MessageService;
 
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -25,14 +25,27 @@ public class MessageServiceImpl implements MessageService {
     private MessageMapper messageMapper;
 
     @Override
-    @Transactional("dsUser")
+    public void createIfNotExists() {
+        Date now = new Date();
+        messageMapper.createIfNotExists(DateUtil.format(now));
+    }
+
+    @Override
+    @Transactional("message")
     public void save(String title, String context) {
         Message message = new Message();
         message.setContext(context);
         message.setTitle(title);
         message.setCtime(new Date());
         int num = messageMapper.insertSelective(message);
-        if (num == 0) logger.error("保存消息失败   title:{}, context:{}", title, context);
+        if (num == 0) logger.error("save message failed, title:{}, context:{}", title, context);
+    }
+
+    @Override
+    @Transactional("message")
+    public void saves(List<Message> messages) {
+        int num = messageMapper.insertList(messages);
+        if (num == 0) logger.error("save message failed, messages:{}", messages);
     }
 
     @Override

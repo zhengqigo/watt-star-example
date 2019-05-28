@@ -1,15 +1,14 @@
-package cn.fuelteam.example.user.model;
+package cn.fuelteam.watt.star.example.message.model;
 
 import java.util.Date;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Message {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Table(name="message")
+public class Message extends Object {
+    
+	@Id
     private Long id;
 
     private String title;
@@ -17,6 +16,18 @@ public class Message {
     private String context;
 
     private Date ctime;
+    
+    public Message() {
+		super();
+	}
+
+	public Message(Long id, String title, String context, Date ctime) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.context = context;
+		this.ctime = ctime;
+	}
 
     public Long getId() {
         return id;

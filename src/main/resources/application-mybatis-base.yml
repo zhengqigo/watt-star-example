@@ -1,0 +1,33 @@
+spring:
+  mybatis:
+    nodes:
+      base:
+        order: before
+        style: normal
+        primary: true
+        base-package: cn.fuelteam.watt.star.example.base.dao
+        mapper-package: mappers
+        type-aliases-package: cn.fuelteam.watt.star.example.base.model
+        data-sources:
+          base_0:
+            load-balance-algorithm-type: random
+            master:
+              name: base
+              db-name: base_0
+              url: jdbc:mysql://localhost:3306?useSSL=false&serverTimezone=GMT%2B8
+          base_1:
+            load-balance-algorithm-type: round-robin
+            master:
+              ref-name: base
+              db-name: base_1
+        props:
+          sql.show: true
+        sharding:
+          default-database-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: base_${id % 23 % 2}
+          tables:
+            base:
+              key-generator-column-name: id
+              actual-data-nodes: base_${0..1}.base

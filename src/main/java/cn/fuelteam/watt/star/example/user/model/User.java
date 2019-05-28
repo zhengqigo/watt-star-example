@@ -1,18 +1,19 @@
-package cn.fuelteam.example.user.model;
+package cn.fuelteam.watt.star.example.user.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class User {
+@Table(name = "user")
+public class User extends Object {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "select uuid()")
     private String id;
 
     private String name;
 
-    private String state;
+    @Column(name = "state")
+    private Integer state;
 
     private String description;
 
@@ -21,7 +22,7 @@ public class User {
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = id == null ? null : id.trim();
     }
 
     public String getName() {
@@ -29,14 +30,14 @@ public class User {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
-    public String getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
@@ -45,7 +46,7 @@ public class User {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? null : description.trim();
     }
 
     @Override

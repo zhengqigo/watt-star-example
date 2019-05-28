@@ -1,0 +1,40 @@
+spring:
+  mybatis:
+    nodes:
+      message:
+        order: before
+        primary: false
+        style: normal
+        base-package: cn.fuelteam.watt.star.example.message.dao
+        mapper-package: mappers
+        type-aliases-package: cn.fuelteam.watt.star.example.message.model
+        data-sources:
+          message_0:
+            master:
+              ref-name: base
+              db-name: message_0
+          message_1:
+            master:
+              ref-name: base
+              db-name: message_1
+          message_2:
+            master:
+              ref-name: base
+              db-name: message_2
+          message_3:
+            master:
+              ref-name: base
+              db-name: message_3
+        sharding:
+          default-data-source-name: message_0
+          default-database-strategy:
+            inline:
+              sharding-column: ctime
+              algorithm-expression: message_${cn.fuelteam.watt.star.example.message.service.impl.DateUtil.work(ctime) % 4}
+          default-table-strategy:
+            inline:
+              sharding-column: ctime
+              algorithm-expression: message
+          tables:
+            message:
+              key-generator-column-name: id

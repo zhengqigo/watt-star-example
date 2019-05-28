@@ -1,0 +1,18 @@
+spring:
+  mybatis:
+    nodes:
+      user:
+        order: before
+        style: normal
+        primary: false
+        base-package: cn.fuelteam.watt.star.example.user.dao
+        mapper-package: mappers
+        type-aliases-package: cn.fuelteam.watt.star.example.user.model
+        data-sources:
+          user_0:
+            load-balance-algorithm-type: round-robin
+            master:
+              ref-name: base
+              db-name: user
+        props:
+          sql.show: true
